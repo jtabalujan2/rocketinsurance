@@ -1,0 +1,44 @@
+Design Document
+
+insurance thats out of this world
+
+1. Main App
+2. Rating Screen (User Input)
+3. Quote Screen (Based on API Call)
+
+Components:
+    1. Main App - Class
+    2. Rating Screen - Function
+    3. Quote Screen - Function
+    4. Buttons - Function
+    5. Loading Screen - Function
+
+
+Flow:
+    - Parent will contain main state and pass state as props to children;
+        - also pass functions to retrieve values from children
+    - Children will have functions to pass values back and allow for a controlled form design
+
+state = {
+    userData: {
+        firstName : string,
+        lastName : string,
+        address : {
+            line_1 : string,
+            line_2 : string,
+            city : string,
+            region : string,
+            postal: string 
+        }
+    },
+    policyCoverages: {
+        deductible : int
+        asteroid_collision : int
+    }
+}
+
+Rerender will occur:
+1. when data is updated in the rating screen (state change)
+2. when person presses quote button (state change + invoke url change)
+3. when loading screen is done (state change)
+4. policy coverages are changed (state change)

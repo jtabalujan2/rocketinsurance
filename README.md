@@ -1,4 +1,4 @@
-# Code based for the sample Rocket Insurance web app. 
+# Rocket Insurance Web App. 
 
 ### - React Application 
 ### - UI Design based on Microsoft's Office UI Fabric

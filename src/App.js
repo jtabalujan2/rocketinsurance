@@ -1,36 +1,64 @@
 import React from 'react';
+
 import './App.css';
 
+import QuoteScreen from './components/QuoteScreen';
 import RatingScreen from './components/RatingScreen'
-import QuoteScreen from './components/QuoteScreen'
 
-class App extends React.Component{
+
+
+class App extends React.Component {
+
+
   state = {
-    userData : {
-      firstName: null,
-      lastName: null,
-      address: {
-        line_1: null,
-        line_2: null,
-        city: null,
-        region: null,
-        postal: null
-      }
+    userData: {
+      isEdit: true,
+      firstName: "",
+      lastName: "",
+      address1: "",
+      address2: "",
+      city: "",
+      region: "",
+      postal: ""
+
     },
-    policyCoverages : {
+    policyCoverages: {
       deductible: 0,
       asteroid_collision: 0
     }
   }
 
   render() {
+
+    const handleOnChangeForUser = (propertyName) => (event) => {
+      this.setState({
+        userData: {
+          ...this.state.userData,
+          [propertyName]: event.target.value
+        }
+      })
+    }
+
+    const handleOnChangeForPolicy = (propertyName) => (event) => {
+      this.setState({
+        policyCoverages: {
+          ...this.state.policyCoverages,
+          [propertyName]: event.target.value
+        }
+      })
+    }
+
     return (
-      <div className="App">
-        <RatingScreen state={this.state}/>
-        <QuoteScreen />
+      <div>
+        {this.state.isEdit ?
+          (<RatingScreen handleOnChangeFor={handleOnChangeForUser} state={this.state} />) :
+          (<QuoteScreen handleOnChangeFor={handleOnChangeForPolicy} state={this.state} />)}
       </div>
-    );
+
+
+    )
   }
 }
+
 
 export default App;

@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Button = (props) => {
-   return(
+   return (
       <button type="button" onClick={props.handleQuoteClick}>{props.buttonName}</button>
    )
 }

@@ -1,13 +1,20 @@
 import React from 'react'
 
 
-const QuoteScreen = (props) => {
-    return (
-        <div>
-            We're Quoting doe
-            {console.log(props)}
-        </div>
-    )
+class QuoteScreen extends React.Component {
+
+    render() {
+
+        return (
+            <div>
+                We're Quoting doe
+                {console.log(this.props)}
+            </div>
+        )
+    }
 }
+
+
+
 
 export default QuoteScreen;

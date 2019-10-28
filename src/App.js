@@ -20,39 +20,33 @@ class App extends React.Component {
       city: "",
       region: "",
       postal: ""
-
     },
-    policyCoverages: {
-      deductible: 0,
-      asteroid_collision: 0
+    quotes: {
+
     }
   }
 
   render() {
 
-    const handleOnChangeForUser = (propertyName) => (event) => {
+    const isEditing = this.state.userData.isEdit
+
+    const handleOnChange = (propertyName, parentProp) => (event) => {
       this.setState({
-        userData: {
-          ...this.state.userData,
+        [parentProp]: {
+          ...this.state[parentProp],
           [propertyName]: event.target.value
         }
       })
+
     }
 
-    const handleOnChangeForPolicy = (propertyName) => (event) => {
-      this.setState({
-        policyCoverages: {
-          ...this.state.policyCoverages,
-          [propertyName]: event.target.value
-        }
-      })
-    }
+
 
     return (
       <div>
-        {this.state.isEdit ?
-          (<RatingScreen handleOnChangeFor={handleOnChangeForUser} state={this.state} />) :
-          (<QuoteScreen handleOnChangeFor={handleOnChangeForPolicy} state={this.state} />)}
+        {isEditing ?
+          (<RatingScreen handleOnChange={handleOnChange} state={this.state} />) :
+          (<QuoteScreen handleOnChange={handleOnChange} state={this.state} />)}
       </div>
 
 

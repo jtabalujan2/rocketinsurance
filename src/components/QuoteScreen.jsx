@@ -1,18 +1,22 @@
 import React from 'react'
 
+const QuoteScreen = (props) => {
 
-class QuoteScreen extends React.Component {
-
-    render() {
-
-        return (
-            <div>
-                We're Quoting doe
-                {console.log(this.props)}
-            </div>
-        )
+    function useQuery() {
+        return new URLSearchParams(props.location.search);
     }
+
+
+
+    let queryUrlId = useQuery().get("id");
+
+    return (
+        <div>
+            <h1>{queryUrlId}</h1>
+        </div>
+    )
 }
+
 
 
 

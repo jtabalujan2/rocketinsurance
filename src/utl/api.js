@@ -12,7 +12,7 @@ export async function generateQuote(userData) {
       "postal": userData.postal
     }
   }
-  console.log(payload)
+
 
   try {
     const response = await fetch(url, {

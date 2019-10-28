@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import './App.css';
 
@@ -12,7 +13,6 @@ class App extends React.Component {
 
   state = {
     userData: {
-      isEdit: true,
       firstName: "",
       lastName: "",
       address1: "",
@@ -28,8 +28,6 @@ class App extends React.Component {
 
   render() {
 
-    const isEditing = this.state.userData.isEdit
-
     const handleOnChange = (propertyName, parentProp) => (event) => {
       this.setState({
         [parentProp]: {
@@ -43,11 +41,13 @@ class App extends React.Component {
 
 
     return (
-      <div>
-        {isEditing ?
-          (<RatingScreen handleOnChange={handleOnChange} state={this.state} />) :
-          (<QuoteScreen handleOnChange={handleOnChange} state={this.state} />)}
-      </div>
+
+      <Router>
+        <div>
+          <Route exact path="/" render={(props) => <RatingScreen {...props} handleOnChange={handleOnChange} state={this.state} />} />
+          <Route path="/quote" render={(props) => <QuoteScreen {...props} handleOnChange={handleOnChange} state={this.state} />} />
+        </div>
+      </Router>
 
 
     )

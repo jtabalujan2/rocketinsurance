@@ -18,12 +18,14 @@ const RatingScreen = (props) => {
 
 
    const handleQuoteClick = (async () => {
-      //generateQuote and sets it to state
+      //generateQuote
       const response = await generateQuote(props.state.userData)
       const event = { target: { value: response } }
 
       //enables local storage in place of a back end to view previous customer quotes
+      //sets state of current session
       localStorage.setItem(`${response.quote.quoteId}`, JSON.stringify(response))
+      props.handleOnChange(`${response.quote.quoteId}`, 'quotes')(event)
 
       currentQuote = response.quote.quoteId
 

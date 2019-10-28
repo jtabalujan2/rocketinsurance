@@ -6,10 +6,10 @@ const QuoteScreen = (props) => {
         return new URLSearchParams(props.location.search);
     }
 
+    const queryUrlId = useQuery().get("id");
+    const local = JSON.parse(localStorage.getItem(`${queryUrlId}`))
 
-
-    let queryUrlId = useQuery().get("id");
-
+    console.log(local)
     return (
         <div>
             <h1>{queryUrlId}</h1>
@@ -18,7 +18,7 @@ const QuoteScreen = (props) => {
 }
 
 
-
+//UP2688975
 
 
 export default QuoteScreen;

@@ -30,8 +30,11 @@ const RatingScreen = (props) => {
          console.log('response: ', response)
          localStorage.setItem(`${response.quote.quoteId}`, JSON.stringify(response))
          props.handleOnChange(`${response.quote.quoteId}`, 'quotes')(event)
+         //error handling null returns
 
          currentQuote = response.quote.quoteId
+
+
       }
       catch (e) {
          console.log(e)

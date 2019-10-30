@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
-import { Button, Icon } from 'semantic-ui-react'
+import { Button, Icon, Header, Container, Grid } from 'semantic-ui-react'
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -20,22 +20,30 @@ class ErrorBoundary extends React.Component {
       // You can render any custom fallback UI
       return (
         <>
-          <h1> Something went wrong. </h1>
-          <h2> Try going back home instead</h2>
-          <Button
-            // as={Link}
-            animated
-            color='teal'
-            onClick={() => {
-              this.props.history.push(`/`)
-              window.location.reload();
-            }}
-          >
-            <Button.Content visible>Home</Button.Content>
-            <Button.Content hidden>
-              <Icon name='arrow right' />
-            </Button.Content>
-          </Button>
+          <Container style={{ margin: 20 }}>
+            <Header as="h1" textAlign='center'> Something went wrong. </Header>
+            <Header as="h1" textAlign='center'> Try going back home instead</Header>
+            <Grid>
+              <Grid.Column textAlign="center">
+                <Button
+                  // as={Link}
+                  animated
+                  color='teal'
+                  onClick={() => {
+                    this.props.history.push(`/`)
+                    window.location.reload();
+                  }}
+                >
+                  <Button.Content visible>Home</Button.Content>
+                  <Button.Content hidden>
+                    <Icon name='arrow right' />
+                  </Button.Content>
+                </Button>
+              </Grid.Column>
+            </Grid>
+
+          </Container>
+
         </>
       );
     }

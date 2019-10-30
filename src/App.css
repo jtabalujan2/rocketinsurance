@@ -36,6 +36,14 @@ label {
   padding-top: 4em;
 }
 
+.ui.dimmer {
+  background-color:transparent;
+}
+
+
+
+
+
 @media (min-width: 755px) {
   #main {
   background-color: #ededed;

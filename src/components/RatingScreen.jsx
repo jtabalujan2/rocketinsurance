@@ -26,12 +26,12 @@ const RatingScreen = (props) => {
       try {
 
          const response = await generateQuote(props.state.userData)
-         const event = { target: { value: response } }
+         const event = { target: { value: response.quote } }
 
          //enables local storage in place of a back end to view previous customer quotes
          //sets state of current session
          console.log('response: ', response)
-         localStorage.setItem(`${response.quote.quoteId}`, JSON.stringify(response))
+         localStorage.setItem(`${response.quote.quoteId}`, JSON.stringify(response.quote))
          props.handleOnChange(`${response.quote.quoteId}`, 'quotes')(event)
          //error handling null returns
          currentQuote = response.quote.quoteId

@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
-import { Form, Divider, Button, Image, Grid, Container } from 'semantic-ui-react'
+import React, { useEffect } from 'react'
+import { Form, Divider, Button, Image, Grid, Container, Dropdown, Modal, Header } from 'semantic-ui-react'
+import confetti from 'canvas-confetti';
 
 import rocketIcon from '../assets/rocketinsurancelogo2.png'
 
 const QuoteScreen = (props) => {
 
-    function useQuery() {
-        return new URLSearchParams(props.location.search);
-    }
-
     try {
+        function useQuery() {
+            return new URLSearchParams(props.location.search);
+        }
         //getting id based on URL
         const quoteId = useQuery().get("id");
 
@@ -27,39 +27,67 @@ const QuoteScreen = (props) => {
             return null
         }
 
+
+
+
+        const handleDropdownChange = async (event) => {
+            props.handleTripleNestedOnChange(`${quoteId}`, 'variable_selections', 'quotes')(event)
+
+            console.log(props.state.quotes[quoteId])
+        }
+
+        const convertToDropdownArray = (arrOfChoices) => {
+            return (arrOfChoices.map((indexValue) => {
+                return ({
+                    key: indexValue,
+                    text: '$' + indexValue,
+                    value: indexValue
+                })
+            }))
+        }
+
         //would rather look at local storage since it is stored in the screen before
         //makes it more reliable than checking props just bc a user can refresh or go directly through url 
+
         const {
             first_name,
             last_name
-        } = local.quote.policy_holder
+        } = local.policy_holder
 
-        const {
-            line_1,
-            line_2,
-            city,
-            region,
-            postal
-        } = local.quote.rating_address
+        const { premium } = local
 
         const {
             deductible,
             asteroid_collision
-        } = local.quote.variable_options
+        } = local.variable_options
 
-        const { premium } = local.quote
+        const deductibleOptions = convertToDropdownArray(deductible.values)
+        const asteroid_collisionOptions = convertToDropdownArray(asteroid_collision.values)
+
 
         // //setting the deductible choices and asteroid choices based on if state exists 
         const deductibleChoice = props.state.quotes[quoteId] ?
-            (props.state.quotes[quoteId].quote.variable_selections.deductible) : (local.quote.variable_selections.deductible)
-        const asteroid_collsionChoice = props.state.quotes[quoteId] ?
-            (props.state.quotes[quoteId].quote.variable_selections.asteroid_collision) : (local.quote.variable_selections.asteroid_collision)
+            (props.state.quotes[quoteId].variable_selections.deductible) : (local.variable_selections.deductible)
+        const asteroid_collisionChoice = props.state.quotes[quoteId] ?
+            (props.state.quotes[quoteId].variable_selections.asteroid_collision) : (local.variable_selections.asteroid_collision)
+
+        const showCongrats = () => {
+
+        }
+
+
 
 
         return (
-            <div id="main">
+
+            <div id="main" >
                 <Form widths="equal">
-                    <Image src={rocketIcon} alt="rocket insurance logo" centered />
+                    <Image as='a'
+                        onClick={() => {
+                            props.history.push(`/`)
+                            window.location.reload();
+                        }}
+                        src={rocketIcon} alt="rocket insurance logo" centered />
                 </Form>
 
 
@@ -89,30 +117,58 @@ const QuoteScreen = (props) => {
                             <Grid.Column>
                                 <Divider className="invisible hidden" horizontal >
                                     <h3> Selected Deductible: </h3>
-                                    <Button disabled size="huge">${deductibleChoice}</Button>
+                                    <Dropdown
+                                        placeholder='Select Deductible'
+                                        fluid
+                                        selection
+                                        onChange={props.handleTripleNestedOnChange(`${quoteId}`, 'deductible', 'variable_selections', 'quotes')}
+                                        options={deductibleOptions}
+                                        defaultValue={deductibleChoice}
+                                    />
                                 </Divider>
                             </Grid.Column>
                             <Grid.Column>
                                 <Divider className="invisible hidden" horizontal >
                                     <h3> Selected Asteroid Collision: </h3>
                                     <Dropdown
-                                        placeholder='Select Friend'
+                                        placeholder='Select Asteroid Collision'
                                         fluid
                                         selection
-                                        options={friendOptions}
-                                        value={asteroid_collsionChoice}
+                                        onChange={(e, { value }) => {
+                                            const event = { target: { value } }
+                                            props.handleTripleNestedOnChange(`${quoteId}`, 'asteroid_collision', 'variable_selections', 'quotes')(event)
+                                        }
+
+                                        }
+                                        options={asteroid_collisionOptions}
+                                        defaultValue={asteroid_collisionChoice}
                                     />
-                                    <Button disabled size="huge">${asteroid_collsionChoice}</Button>
+
                                 </Divider>
                             </Grid.Column>
 
                         </Grid>
 
+                        <Divider className="invisible hidden" horizontal >
+                            <Modal
+                                trigger={<Button>Puchase</Button>}
+                                header='Welcome to the Rocket Insurance Family!!'
+                                content='We hope you have a blast!'
+                                onOpen={() => confetti({
+                                    particleCount: 300,
+                                    spread: 180
+                                })}
+                                style={{ 'backgroundColor': 'none' }}
+
+                            />
+
+                        </Divider>
+
                     </Container>
 
                 </Container>
 
-            </div>
+            </div >
         )
     }
     catch (e) {

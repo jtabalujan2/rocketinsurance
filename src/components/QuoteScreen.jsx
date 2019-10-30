@@ -27,15 +27,6 @@ const QuoteScreen = (props) => {
             return null
         }
 
-
-
-
-        const handleDropdownChange = async (event) => {
-            props.handleTripleNestedOnChange(`${quoteId}`, 'variable_selections', 'quotes')(event)
-
-            console.log(props.state.quotes[quoteId])
-        }
-
         const convertToDropdownArray = (arrOfChoices) => {
             return (arrOfChoices.map((indexValue) => {
                 return ({
@@ -70,12 +61,6 @@ const QuoteScreen = (props) => {
             (props.state.quotes[quoteId].variable_selections.deductible) : (local.variable_selections.deductible)
         const asteroid_collisionChoice = props.state.quotes[quoteId] ?
             (props.state.quotes[quoteId].variable_selections.asteroid_collision) : (local.variable_selections.asteroid_collision)
-
-        const showCongrats = () => {
-
-        }
-
-
 
 
         return (

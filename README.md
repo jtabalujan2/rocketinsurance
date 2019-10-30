@@ -1,4 +1,5 @@
-# Rocket Insurance Web App. 
+![Rocket Insurance Logo](https://github.com/jtabalujan2/rocketinsurance/blob/master/src/assets/rocketinsurancelogo2.png)
+# Rocket Insurance Web App 
 
 ### - React Application 
 ### - UI Design based on Semantic's React UI Library

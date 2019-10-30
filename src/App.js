@@ -42,7 +42,7 @@ class App extends React.Component {
 
     return (
 
-      <Container style={{ margin: 20 }}>
+      <Container style={{ margin: 20 }} >
         <Router>
           <ErrorBoundary>
             <Switch>

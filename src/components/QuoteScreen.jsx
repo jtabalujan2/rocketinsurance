@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
+import { Form, Divider, Button, Image, Grid, Container } from 'semantic-ui-react'
+
+import rocketIcon from '../assets/rocketinsurancelogo2.png'
 
 const QuoteScreen = (props) => {
-
-
 
     function useQuery() {
         return new URLSearchParams(props.location.search);
@@ -21,6 +22,7 @@ const QuoteScreen = (props) => {
             props.handleOnChange(`${quoteId}`, 'quotes')(event)
         }
 
+        //if we can't get a local storage value, we don't want to render the component
         if (local === null) {
             return null
         }
@@ -55,14 +57,61 @@ const QuoteScreen = (props) => {
 
 
         return (
-            <div>
-                <h1>Here's What We Can Do For You, {first_name}</h1>
-                <h1>{quoteId}</h1>
+            <div id="main">
+                <Form widths="equal">
+                    <Image src={rocketIcon} alt="rocket insurance logo" centered />
+                </Form>
 
-                <h3>Current Premium: ${premium}</h3>
 
-                <h3>Selected Deductible: ${deductibleChoice}</h3>
-                <h3>Selected Asteroid Collision: ${asteroid_collsionChoice}</h3>
+                <Divider horizontal>
+                    <h2>Here's What We Can Do For You, {first_name}</h2>
+                </Divider>
+                <Container className="card" fluid>
+                    <Container className="inner-card">
+                        <br />
+
+                        <Grid columns={2} padded>
+                            <Divider className="invisible hidden" horizontal >
+                                <h3> Quote ID: </h3>
+                                <Button disabled size="huge">{quoteId}</Button>
+                            </Divider>
+                            <Divider className="invisible hidden" horizontal >
+                                <h3> Current Premium: </h3>
+                                <Button disabled size="huge">${premium}</Button>
+                            </Divider>
+                            <Grid.Column>
+
+                            </Grid.Column>
+                            <Grid.Column>
+
+                            </Grid.Column>
+
+                            <Grid.Column>
+                                <Divider className="invisible hidden" horizontal >
+                                    <h3> Selected Deductible: </h3>
+                                    <Button disabled size="huge">${deductibleChoice}</Button>
+                                </Divider>
+                            </Grid.Column>
+                            <Grid.Column>
+                                <Divider className="invisible hidden" horizontal >
+                                    <h3> Selected Asteroid Collision: </h3>
+                                    <Dropdown
+                                        placeholder='Select Friend'
+                                        fluid
+                                        selection
+                                        options={friendOptions}
+                                        value={asteroid_collsionChoice}
+                                    />
+                                    <Button disabled size="huge">${asteroid_collsionChoice}</Button>
+                                </Divider>
+                            </Grid.Column>
+
+                        </Grid>
+
+                    </Container>
+
+                </Container>
+
             </div>
         )
     }

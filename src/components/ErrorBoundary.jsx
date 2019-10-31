@@ -13,6 +13,8 @@ class ErrorBoundary extends React.Component {
     this.setState({ hasError: true });
     // You can also log the error to an error reporting service
     // logErrorToMyService(error, info);
+    console.log('error: ', error);
+    console.log('info: ', info);
   }
 
   render() {
@@ -30,6 +32,7 @@ class ErrorBoundary extends React.Component {
                   animated
                   color='teal'
                   onClick={() => {
+                    console.log(this.props.history)
                     this.props.history.push(`/`)
                     window.location.reload();
                   }}

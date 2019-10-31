@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
+import { Switch, Route, HashRouter as Router } from 'react-router-dom'
 import { Container } from 'semantic-ui-react';
 
 
@@ -22,7 +22,7 @@ class App extends React.Component {
       address2: "",
       city: "",
       region: "",
-      postal: 0
+      postal: ""
     },
     quotes: {
 
@@ -74,12 +74,12 @@ class App extends React.Component {
     return (
 
       <Container style={{ margin: 20 }} >
-        <Router>
+        <Router history={Router}>
           <ErrorBoundary>
             <Switch>
               <Route exact path="/" forceRefresh={true} render={(props) => <RatingScreen {...props} handleOnChange={handleOnChange} state={this.state} />} />
               <Route path="/quote" render={(props) => <QuoteScreen {...props} handleOnChange={handleOnChange} handleTripleNestedOnChange={handleTripleNestedOnChange} state={this.state} />} />
-              <Route component={Page404} />
+              <Route render={(props) => <Page404 {...props} />} />
             </Switch>
           </ErrorBoundary>
         </Router>

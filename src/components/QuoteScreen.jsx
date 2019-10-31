@@ -83,7 +83,7 @@ const QuoteScreen = (props) => {
                     <Container className="inner-card">
                         <br />
 
-                        <Grid columns={2} padded>
+                        <Grid columns={2} padded stackable>
                             <Divider className="invisible hidden" horizontal >
                                 <h3> Quote ID: </h3>
                                 <Button disabled size="huge">{quoteId}</Button>
@@ -105,7 +105,7 @@ const QuoteScreen = (props) => {
                                 />
 
                             </Grid.Column>
-                            <Grid.Column>
+                            <Grid.Column >
 
                                 <Header textAlign="center">Asteroid Collision: </Header>
                                 <Dropdown

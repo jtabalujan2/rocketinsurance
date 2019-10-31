@@ -22,7 +22,7 @@ class App extends React.Component {
       address2: "",
       city: "",
       region: "",
-      postal: ""
+      postal: 0
     },
     quotes: {
 

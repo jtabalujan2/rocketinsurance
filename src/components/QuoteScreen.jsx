@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Form, Divider, Button, Image, Grid, Container, Dropdown, Modal, Header } from 'semantic-ui-react'
 import confetti from 'canvas-confetti';
 
@@ -76,9 +76,9 @@ const QuoteScreen = (props) => {
                 </Form>
 
 
-                <Divider horizontal>
-                    <h2>Here's What We Can Do For You, {first_name}</h2>
-                </Divider>
+
+                <Header textAlign="center" as="h1">Here's What We Can Do For You, {first_name}</Header>
+
                 <Container className="card" fluid>
                     <Container className="inner-card">
                         <br />
@@ -94,44 +94,35 @@ const QuoteScreen = (props) => {
                             </Divider>
                             <Grid.Column>
 
+                                <Header textAlign="center">Deductible: <br></br></Header>
+                                <Dropdown
+                                    placeholder='Select Deductible'
+                                    fluid
+                                    selection
+                                    onChange={props.handleTripleNestedOnChange(`${quoteId}`, 'deductible', 'variable_selections', 'quotes')}
+                                    options={deductibleOptions}
+                                    defaultValue={deductibleChoice}
+                                />
+
                             </Grid.Column>
                             <Grid.Column>
 
+                                <Header textAlign="center">Asteroid Collision: </Header>
+                                <Dropdown
+                                    placeholder='Asteroid Collision'
+                                    fluid
+                                    selection
+                                    onChange={(e, { value }) => {
+                                        const event = { target: { value } }
+                                        props.handleTripleNestedOnChange(`${quoteId}`, 'asteroid_collision', 'variable_selections', 'quotes')(event)
+                                    }
+
+                                    }
+                                    options={asteroid_collisionOptions}
+                                    defaultValue={asteroid_collisionChoice}
+                                />
+
                             </Grid.Column>
-
-                            <Grid.Column>
-                                <Divider className="invisible hidden" horizontal >
-                                    <h3> Selected Deductible: </h3>
-                                    <Dropdown
-                                        placeholder='Select Deductible'
-                                        fluid
-                                        selection
-                                        onChange={props.handleTripleNestedOnChange(`${quoteId}`, 'deductible', 'variable_selections', 'quotes')}
-                                        options={deductibleOptions}
-                                        defaultValue={deductibleChoice}
-                                    />
-                                </Divider>
-                            </Grid.Column>
-                            <Grid.Column>
-                                <Divider className="invisible hidden" horizontal >
-                                    <h3> Selected Asteroid Collision: </h3>
-                                    <Dropdown
-                                        placeholder='Select Asteroid Collision'
-                                        fluid
-                                        selection
-                                        onChange={(e, { value }) => {
-                                            const event = { target: { value } }
-                                            props.handleTripleNestedOnChange(`${quoteId}`, 'asteroid_collision', 'variable_selections', 'quotes')(event)
-                                        }
-
-                                        }
-                                        options={asteroid_collisionOptions}
-                                        defaultValue={asteroid_collisionChoice}
-                                    />
-
-                                </Divider>
-                            </Grid.Column>
-
                         </Grid>
 
                         <Divider className="invisible hidden" horizontal >

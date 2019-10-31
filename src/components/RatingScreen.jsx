@@ -30,7 +30,6 @@ const RatingScreen = (props) => {
 
          //enables local storage in place of a back end to view previous customer quotes
          //sets state of current session
-         console.log('response: ', response)
          localStorage.setItem(`${response.quote.quoteId}`, JSON.stringify(response.quote))
          props.handleOnChange(`${response.quote.quoteId}`, 'quotes')(event)
          //error handling null returns

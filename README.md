@@ -3,8 +3,7 @@
 
 ### - React Application 
 ### - UI Design based on Semantic's React UI Library
-### - Basic unit testing
-### - Hosted on AWS EC2 instance
+### - Hosted on ZEIT (Now) Serverless Platform
 
 ## Available Scripts
 

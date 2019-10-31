@@ -1,9 +1,9 @@
-# Rocket Insurance Web App. 
+![Rocket Insurance Logo](https://github.com/jtabalujan2/rocketinsurance/blob/master/src/assets/rocketinsurancelogo2.png)
+# Rocket Insurance Web App 
 
 ### - React Application 
-### - UI Design based on Microsoft's Office UI Fabric
-### - CI/CD pipeline w/ TravisCI
-### - Basic unit/integration tests that execute after code change
+### - UI Design based on Semantic's React UI Library
+### - Basic unit testing
 ### - Hosted on AWS EC2 instance
 
 ## Available Scripts

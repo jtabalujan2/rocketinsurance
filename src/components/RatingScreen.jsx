@@ -140,8 +140,8 @@ const RatingScreen = (props) => {
                      name="region"
                      label="State / Region*"
                      placeholder="State / Region*"
-                     validators={['required']}
-                     errorMessages={['This field is required']}
+                     validators={['required', 'maxStringLength: 2', 'isString']}
+                     errorMessages={['This field is required', 'Please enter the abbreviation for your state', 'Please only enter strings']}
                      size="huge"
                   />
                   <FormInput
@@ -151,8 +151,8 @@ const RatingScreen = (props) => {
                      name="postal"
                      label="Postal*"
                      placeholder="Postal*"
-                     validators={['required']}
-                     errorMessages={['This field is required']}
+                     validators={['required', 'isNumber', 'minNumber:10000']}
+                     errorMessages={['This field is required', 'Please enter a 5 digit postal code (numbers only!)', 'Please enter a 5 digit postal code (numbers only!)']}
                      size="huge"
                   />
 

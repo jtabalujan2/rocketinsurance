@@ -127,7 +127,7 @@ const QuoteScreen = (props) => {
 
                         <Divider className="invisible hidden" horizontal >
                             <Modal
-                                trigger={<Button>Puchase</Button>}
+                                trigger={<Button color='teal' size='large'>Puchase</Button>}
                                 header='Welcome to the Rocket Insurance Family!!'
                                 content='We hope you have a blast!'
                                 onOpen={() => confetti({

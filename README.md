@@ -5,7 +5,7 @@
 ### - UI Design based on Semantic's React UI Library
 ### - Hosted on ZEIT (Now) Serverless Platform
 
-### Also available at [https://rocketinsurance.now.sh/#/](https://rocketinsurance.now.sh/)
+### Live demo available: [https://rocketinsurance.now.sh/](https://rocketinsurance.now.sh/)
 
 ## Available Scripts
 
